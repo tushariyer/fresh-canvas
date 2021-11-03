@@ -2,10 +2,10 @@
 
 from distutils.core import setup
 
-setup(name='canvas',
-      version='0.1.1',
-      py_modules=['canvas'],
-      description='Canvas | The Project Base',
+setup(name='fresh-canvas',
+      version='0.1.2',
+      py_modules=['fresh-canvas'],
+      description='Fresh Canvas | The Project Base',
       author='Tushar Iyer',
       author_email='redacted@email.site',
       url='https://github.com/tushariyer/canvas',
