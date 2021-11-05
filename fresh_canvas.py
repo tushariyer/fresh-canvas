@@ -1,51 +1,60 @@
 #!/usr/bin/env python
 
 import os
-from directories import paths as path_list
-from directories import dont_init_as_py
-from canvas_utilities import get_all_subdirectories as get_dirs
-from canvas_utilities import create_sample_test
-from canvas_utilities import create
-from canvas_utilities import save_base_gitignore
+
+import directories
+import canvas_utilities as cutils
 
 
-def new(name):
+def new(name, is_github):
     print(f'Creating directories for {name}')
     os.mkdir(name)
-    save_base_gitignore(name)
+    cutils.save_base_gitignore(name)
     project_root_dir = os.getcwd()
+    path_list = directories.paths
+    created_sample_test = False
+
+    if is_github == "n":
+        path_list = directories.remove_github_path()
     for path in path_list:
         os.makedirs(path)
 
-    created_directories = get_dirs(project_root_dir)
+    created_directories = cutils.get_all_subdirectories(project_root_dir)
 
-    create("main")
+    cutils.create("main")
 
     print('Initializing Python directories')
     for directory in created_directories:
-        if any(x not in directory for x in dont_init_as_py):
+        if directory.endswith("workflows"):
+            print('Adding Base GitHub Actions')
+
+        if any(x not in directory for x in directories.dont_init_as_py):
             os.chdir(directory)
             open("__init__.py", "w")
 
             if directory.endswith("Test"):
                 print('Creating sample Python test')
-                create_sample_test()
+                cutils.create_sample_test()
+                created_sample_test = True
             elif directory.endswith("API"):
-                create("controller")
+                cutils.create("controller")
             elif directory.endswith("Read"):
-                create("read_data")
+                cutils.create("read_data")
             elif directory.endswith("Write"):
-                create("write_data")
+                cutils.create("write_data")
 
             os.chdir(project_root_dir)
 
-    print('Running Sample Test')
-    os.system('python3 -m unittest Test')
+    if created_sample_test:
+        print('Running Sample Test')
+        os.system('python3 -m unittest Test')
 
 
 if __name__ == '__main__':
     project_name = input("Enter Project Name:\n")
+    is_github_project = input("Is this a GitHub hosted solution? (y/n)\n")
+
     if len(project_name) > 0:
-        new(project_name)
+        new(project_name, is_github_project)
     else:
         print(f'Project name cannot be empty')

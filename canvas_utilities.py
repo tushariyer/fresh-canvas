@@ -1,4 +1,5 @@
 import os
+from directories import github_path
 
 
 def get_all_subdirectories(root_dir):

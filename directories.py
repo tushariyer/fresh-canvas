@@ -12,6 +12,7 @@ core_util_path = str("Core" + separator + "Utilities")
 core_int_path = str("Core" + separator + "Integration")
 core_auth_path = str("Core" + separator + "Auth")
 core_app_path = str("Core" + separator + "App")
+github_path = str(".github" + separator + "workflows")
 
 paths = [
     api_path,
@@ -23,9 +24,16 @@ paths = [
     core_auth_path,
     data_models_path,
     data_read_path,
-    data_write_path
+    data_write_path,
+    github_path
 ]
 
 dont_init_as_py = [
-    "CICD"
+    "CICD",
+    ".github",
+    "workflows"
 ]
+
+
+def remove_github_path():
+    return paths[:-1]
