@@ -10,3 +10,5 @@ Licensed under the generic MIT License
 
 ## Installation
 `pip install fresh-canvas`
+
+## Changelog
