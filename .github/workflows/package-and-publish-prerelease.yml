@@ -6,11 +6,12 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Package & Publish
+name: Package & Publish [Pre-Release]
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'develop'
 
 jobs:
   deploy:
@@ -28,7 +29,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
     - name: Build package
-      run: python setup.py sdist
+      run: python setup-prerelease.py sdist
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
