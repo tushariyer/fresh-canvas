@@ -10,4 +10,4 @@ jobs:
     - uses: hmarr/auto-approve-action@v2
       if: github.actor == 'tushariyer' || github.actor == 'tushariyer-bot'
       with:
-        github-token: "${{ secrets.HUB_TOKEN }}"
+        github-token: "${{ secrets.APPROVE_TOKEN }}"
