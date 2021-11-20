@@ -1,0 +1,13 @@
+name: Auto Approve
+
+on:
+  pull_request
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@v2
+      if: github.actor == 'tushariyer' || github.actor == 'tushariyer-bot'
+      with:
+        github-token: "${{ secrets.APPROVE_TOKEN }}"
