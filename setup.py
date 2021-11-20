@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(name='fresh-canvas',
-      version='0.1.3',
+      version='0.1.4',
       py_modules=['fresh-canvas'],
       description='Fresh Canvas | The Project Base',
       long_description=long_description,
