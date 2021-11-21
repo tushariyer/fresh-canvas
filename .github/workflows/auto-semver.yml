@@ -1,0 +1,25 @@
+name: Auto SemVer
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+
+jobs:
+  auto-semver:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git Status
+      run: |
+        git status
+    - name: Get Current Version
+      run: |
+        currentVersion = cat 'version.txt'
+    - name: Edit Version File
+      run: |
+        echo "0.1.8" > 'version.txt'
+    - name: Commit Version Bump
+      run: |
+        git add version.txt
+        git commit -m "Chore: SemVer Bump"
+        git push
