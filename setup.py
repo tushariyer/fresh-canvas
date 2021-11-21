@@ -2,11 +2,19 @@
 
 from distutils.core import setup
 
+long_description = ''
+version = ''
+
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+    fh.close()
+    
+with open("version.txt", "r", encoding="utf-8") as fh:
+    version = fh.read()
+    fh.close()
 
 setup(name='fresh-canvas',
-      version='0.1.7',
+      version=version,
       py_modules=['fresh-canvas'],
       description='Fresh Canvas | The Project Base',
       long_description=long_description,
