@@ -19,6 +19,8 @@ jobs:
         echo "0.1.8" > 'version.txt'
     - name: Commit Version Bump
       run: |
+        git config user.name tushariyer-bot
+        git config user.email github-actions@github.com
         git add version.txt
         git commit -m "Chore: SemVer Bump"
         git push
