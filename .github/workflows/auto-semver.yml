@@ -1,0 +1,22 @@
+name: Auto SemVer
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+
+jobs:
+  auto-semver:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout
+    - name: Bump Version
+      run: |
+        cat 'version.txt'
+        echo "0.1.9" > 'version.txt'
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add version.txt
+        git commit -m "Chore: SemVer Bump"
+        git push
