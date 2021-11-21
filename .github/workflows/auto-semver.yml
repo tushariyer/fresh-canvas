@@ -13,7 +13,7 @@ jobs:
       name: Checkout Branch
     - name: Get Current Version
       run: |
-        currentVersion = cat 'version.txt'
+        cat 'version.txt'
     - name: Edit Version File
       run: |
         echo "0.1.8" > 'version.txt'
