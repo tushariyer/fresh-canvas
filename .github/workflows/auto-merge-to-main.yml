@@ -1,4 +1,4 @@
-name: Auto Pull Request
+name: Auto Merge to Main
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  auto-pull-request:
+  auto-merge-to-main:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
       name: Raise Pull Request
       with:
         destination_branch: "main"
-        pr_title: "Auto Pull Request develop -> main"
-        pr_body: "👑 *Automated Pull Request*"
+        pr_title: "Auto Merge develop -> main"
+        pr_body: "👑 *Automated Merge to Main*"
         pr_draft: false
         github_token: "${{ secrets.HUB_TOKEN }}"
