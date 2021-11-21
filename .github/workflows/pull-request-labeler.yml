@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: TimonVS/pr-labeler-action@v3
         with:
-          configuration-path: .github/pull-request-labeler.yml # optional, .github/pr-labeler.yml is the default value
+          configuration-path: .github/pull-request-labeler-configs.yml # optional, .github/pr-labeler.yml is the default value
         env:
           GITHUB_TOKEN: ${{ secrets.HUB_TOKEN }}
