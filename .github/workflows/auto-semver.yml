@@ -8,13 +8,11 @@ on:
 jobs:
   auto-semver:
     runs-on: ubuntu-latest
-    env:
-      branchName: "${{ github.ref_name }}"
     steps:
     - uses: actions/checkout@v2
       name: Checkout Branch
-      run: |
-        /usr/bin/git $GITHUB_REF
+      with:
+        ref: "${{ github.ref_name }}"
     - name: Get Current Version
       run: |
         currentVersion = cat 'version.txt'
