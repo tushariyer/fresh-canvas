@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       name: Checkout Branch
       with:
-        ref: ${{ github.ref_name }}
+        ref: "${{ github.ref_name }}"
     - name: Get Current Version
       run: |
         currentVersion = cat 'version.txt'
