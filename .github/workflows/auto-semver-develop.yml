@@ -1,4 +1,4 @@
-name: Auto SemVer
+name: Auto SemVer [Develop]
 
 on:
   pull_request:
@@ -6,13 +6,22 @@ on:
       - 'develop'
 
 jobs:
-  auto-semver:
+  auto-semver-develop:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Bump Version
       run: |
-        cat 'version.txt'
+        CURRENT_VERSION=cat 'version.txt'
+        arrVERSION=(${CURRENT_VERSION//./ })
+        ((arrVERSION[2]++))
+        delim=""
+        joined=""
+        for item in "${arrVERSION[@]}"; do
+          joined="$joined$delim$item"
+          delim="."
+        done
+        echo "$joined"
         echo "0.1.11" > 'version.txt'
         git config user.name github-actions
         git config user.email github-actions@github.com
