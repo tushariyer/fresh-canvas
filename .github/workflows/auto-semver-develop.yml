@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Bump Version
+    - name: Bump Minor Version
       run: |
         CURRENT_VERSION=cat 'version.txt'
         arrVERSION=(${CURRENT_VERSION//./ })
