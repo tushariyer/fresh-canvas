@@ -21,8 +21,7 @@ jobs:
           joined="$joined$delim$item"
           delim="."
         done
-        echo "$joined"
-        echo "0.1.11" > 'version.txt'
+        echo "$joined" > 'version.txt'
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add version.txt
