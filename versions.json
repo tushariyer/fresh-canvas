@@ -1,0 +1,28 @@
+{
+  "version_changelog" : [
+    {
+      "version" : "0.1",
+      "date" : "2021-11-03T16:20:40.204Z",
+      "description" : "Initial publish",
+      "is_pre_release" : true
+    },
+    {
+      "version" : "0.1.1",
+      "date" : "2021-11-03T16:24:16.204Z",
+      "description" : "PyPi integration patch",
+      "is_pre_release" : true
+    },
+    {
+      "version" : "0.1.2",
+      "date" : "2021-11-03T16:26:20.204Z",
+      "description" : "PyPi integration fixed",
+      "is_pre_release" : true
+    },
+    {
+      "version" : "0.2",
+      "date" : "2021-11-03T16:26:20.204Z",
+      "description" : "",
+      "is_pre_release" : true
+    }
+  ]
+}
