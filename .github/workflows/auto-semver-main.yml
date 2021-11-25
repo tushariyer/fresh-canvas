@@ -1,22 +1,22 @@
-name: Auto SemVer [Develop]
+name: Auto SemVer [Main]
 
 on:
   pull_request:
     branches:
-      - 'develop'
+      - 'main'
 
 jobs:
   auto-semver-develop:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Bump Minor Version
+    - name: Bump Major Version
       run: |
         CURRENT_VERSION=`cat version.txt`
 
         echo "Current Version: $CURRENT_VERSION"
         arrVERSION=(${CURRENT_VERSION//./ })
-        ((arrVERSION[2]++))
+        ((arrVERSION[1]++))
 
         delim=""
         joined=""
@@ -27,7 +27,7 @@ jobs:
         done
 
         echo "$joined" > 'version.txt'
-        echo "Minor Version Bumped to $joined"
+        echo "Major Version Bumped to $joined"
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add version.txt

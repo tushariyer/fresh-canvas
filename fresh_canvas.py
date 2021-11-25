@@ -2,8 +2,8 @@
 
 import os
 
-import directories
-import canvas_utilities as cutils
+from Data.BaseCanvasData import directories
+from Core.Utilities import canvas_utilities as cutils
 
 
 def new(name, is_github):
@@ -37,9 +37,9 @@ def new(name, is_github):
             os.chdir(directory)
             open("__init__.py", "w")
 
-            # Add a sample unit test so the users have a starting point
+            # Add a sample unit Test so the users have a starting point
             if directory.endswith("Test"):
-                print('Creating sample Python test')
+                print('Creating sample Python Test')
                 cutils.create_sample_test()
                 created_sample_test = True
             elif directory.endswith("API"):
@@ -50,7 +50,7 @@ def new(name, is_github):
                 cutils.create("write_data")
 
             # Go back to the root. Theoretically if we were able to
-            # create a test sample then we should be able to run
+            # create a Test sample then we should be able to run
             # tests and assert that python stuff is good to go
             os.chdir(project_root_dir)
 

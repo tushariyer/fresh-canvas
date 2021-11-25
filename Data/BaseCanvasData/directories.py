@@ -3,7 +3,7 @@ import os
 separator = os.sep
 
 api_path = str("API" + separator + "Blueprints")
-test_path = "Test"
+test_path = "../../Test"
 cicd_path = "CICD"
 data_models_path = str("Data" + separator + "Models")
 data_read_path = str("Data" + separator + "Read")
@@ -13,6 +13,20 @@ core_int_path = str("Core" + separator + "Integration")
 core_auth_path = str("Core" + separator + "Auth")
 core_app_path = str("Core" + separator + "App")
 github_path = str(".github" + separator + "workflows")
+
+base_paths = [
+    test_path,
+    core_app_path,
+    core_util_path,
+    core_int_path,
+    core_auth_path,
+    data_models_path
+]
+
+database_paths = [
+    data_read_path,
+    data_write_path
+]
 
 paths = [
     api_path,
