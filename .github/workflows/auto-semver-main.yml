@@ -11,8 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: github.ref
-        github-token: "${{ secrets.APPROVE_TOKEN }}"
+        token: "${{ secrets.APPROVE_TOKEN }}"
     - name: Bump Minor Version
       run: |
         CURRENT_VERSION=`cat version.txt`
@@ -36,4 +35,4 @@ jobs:
         git config user.email github-actions@github.com
         git add version.txt
         git commit -m "Chore: Version Bumped to $joined"
-        git push
+        git push origin HEAD:github.ref
