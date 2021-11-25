@@ -16,22 +16,29 @@ jobs:
           token: "${{ secrets.APPROVE_TOKEN }}"
       - name: Bump Patch Version
         run: |
-          CURRENT_VERSION=`cat version.txt`
+          LAST_COMMIT=`git log -1 --oneline`
+          SUBSTRING="Version Bumped"
 
-          echo "Current Version: $CURRENT_VERSION"
-          arrVERSION=(${CURRENT_VERSION//./ })
-          ((arrVERSION[2]++))
+          if [[ "$LAST_COMMIT" == *"$SUBSTRING"* ]]; then
+            CURRENT_VERSION=`cat version.txt`
 
-          delim=""
-          joined=""
+            echo "Current Version: $CURRENT_VERSION"
 
-          for item in "${arrVERSION[@]}"; do
+            arrVERSION=(${CURRENT_VERSION//./ })
+            ((arrVERSION[2]++))
+
+            delim=""
+            joined=""
+
+            for item in "${arrVERSION[@]}"; do
               joined="$joined$delim$item"
               delim="."
-          done
+            done
 
-          echo "$joined" > 'version.txt'
-          echo "Patch Version Bumped to $joined"
+            echo "$joined" > 'version.txt'
+            echo "Patch Version Bumped to $joined"
+          fi
+
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add version.txt
