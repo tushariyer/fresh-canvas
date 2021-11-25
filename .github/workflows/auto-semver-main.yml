@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Bump Major Version
+      with:
+        github-token: "${{ secrets.APPROVE_TOKEN }}"
+    - name: Bump Minor Version
       run: |
         CURRENT_VERSION=`cat version.txt`
 
         echo "Current Version: $CURRENT_VERSION"
         arrVERSION=(${CURRENT_VERSION//./ })
         ((arrVERSION[1]++))
+        ((arrVERSION[2]=0))
 
         delim=""
         joined=""
@@ -27,7 +30,7 @@ jobs:
         done
 
         echo "$joined" > 'version.txt'
-        echo "Major Version Bumped to $joined"
+        echo "Minor Version Bumped to $joined"
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add version.txt
