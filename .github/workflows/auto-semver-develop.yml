@@ -9,7 +9,7 @@ jobs:
   auto-semver-develop:
     runs-on: ubuntu-latest
     steps:
-      - if: "!contains(github.event.head_commit.message, 'Chore: Version Bumped to ') && !contains(github.event.head_commit.message, 'Chore: Version Bumped to ')"
+      - if: "${{ !contains(github.event.head_commit.message, 'Chore: Version Bumped to ') }}"
         uses: actions/checkout@v2
         with:
           ref: "${{ github.event.pull_request.head.ref }}"
