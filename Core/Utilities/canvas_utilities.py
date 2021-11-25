@@ -21,7 +21,7 @@ def create(file):
 
 
 def read_gitignore():
-    with open('base.gitignore') as f:
+    with open('Data/BaseCanvasData/base.gitignore') as f:
         file = f.read()
         f.close()
         return file
@@ -32,6 +32,6 @@ def save_base_gitignore(dest_dir):
     gitignore_file = read_gitignore()
 
     os.chdir(dest_dir)
-    f = open('.gitignore', 'w')
+    f = open('../.gitignore', 'w')
     f.write(gitignore_file)
     f.close()

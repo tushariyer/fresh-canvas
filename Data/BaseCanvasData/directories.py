@@ -3,7 +3,7 @@ import os
 separator = os.sep
 
 api_path = str("API" + separator + "Blueprints")
-test_path = "Test"
+test_path = "../../Test"
 cicd_path = "CICD"
 data_models_path = str("Data" + separator + "Models")
 data_read_path = str("Data" + separator + "Read")
