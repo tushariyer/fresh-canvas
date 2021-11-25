@@ -12,18 +12,24 @@ jobs:
     - uses: actions/checkout@v2
     - name: Bump Major Version
       run: |
-        CURRENT_VERSION=cat 'version.txt'
+        CURRENT_VERSION=`cat version.txt`
+
+        echo "Current Version: $CURRENT_VERSION"
         arrVERSION=(${CURRENT_VERSION//./ })
         ((arrVERSION[1]++))
+
         delim=""
         joined=""
+
         for item in "${arrVERSION[@]}"; do
-          joined="$joined$delim$item"
-          delim="."
+        	joined="$joined$delim$item"
+        	delim="."
         done
+
         echo "$joined" > 'version.txt'
+        echo "Major Version Bumped to $joined"
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add version.txt
-        git commit -m "Chore: SemVer Bump"
+        git commit -m "Chore: Version Bumped to $joined"
         git push
