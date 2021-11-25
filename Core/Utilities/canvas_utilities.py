@@ -35,3 +35,8 @@ def save_base_gitignore(dest_dir):
     f = open('../.gitignore', 'w')
     f.write(gitignore_file)
     f.close()
+
+
+def create_directories(directories, as_python=False):
+    for directory in directories:
+        os.makedirs(directory)

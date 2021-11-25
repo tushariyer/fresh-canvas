@@ -14,6 +14,20 @@ core_auth_path = str("Core" + separator + "Auth")
 core_app_path = str("Core" + separator + "App")
 github_path = str(".github" + separator + "workflows")
 
+base_paths = [
+    test_path,
+    core_app_path,
+    core_util_path,
+    core_int_path,
+    core_auth_path,
+    data_models_path
+]
+
+database_paths = [
+    data_read_path,
+    data_write_path
+]
+
 paths = [
     api_path,
     test_path,
