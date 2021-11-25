@@ -28,4 +28,8 @@ class Canvas:
         if has_database:
             self.python_directories.append(base_dir.database_paths)
 
+    def get_python_directories(self):
         return self.python_directories
+
+    def get_non_python_directories(self):
+        return self.non_python_directories
