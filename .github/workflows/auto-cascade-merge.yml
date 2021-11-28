@@ -1,0 +1,25 @@
+name: Auto Cascade Merge
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  auto-cascade-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "${{ github.event.pull_request.head.ref }}"
+          token: "${{ secrets.APPROVE_TOKEN }}"
+      - name: Cascade Merge to Develop
+        run: |
+          echo "Checking if version changed"
+          ORIGIN_BRANCH="origin/main"
+          LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
+          SUBSTRING="Auto Merge develop -> main"
+
+          if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
+            echo "Version was changed"
+          fi
