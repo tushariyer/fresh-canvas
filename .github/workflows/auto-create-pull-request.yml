@@ -3,9 +3,10 @@ name: Auto Raise Pull Request
 on:
   push:
     branches:
-      - '*/*'
-      - '!develop'
-      - '!main'
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'chore/*'
+      - 'cicd/*'
 
 
 jobs:
@@ -19,6 +20,7 @@ jobs:
       with:
         destination_branch: "develop"
         pr_title: "Automatic Pull Request to develop"
-        pr_body: "👑 *Automated Merge to Main*"
+        pr_body: "👑 *Automated Pull Request to Develop*"
         pr_draft: false
+        pr_label: "AutoCICD"
         github_token: "${{ secrets.HUB_TOKEN }}"
