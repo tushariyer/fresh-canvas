@@ -2,12 +2,9 @@
 
 from distutils.core import setup
 
-long_desc = ''
+long_desc = 'Licensed under the generic MIT License.\"fresh-canvas\" can either be downloaded from the ' \
+            'Releases page on GitHub and manually added to PATH or installed via \"pip\".'
 prerelease_version = ''
-
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_desc = fh.read()
-    fh.close()
 
 with open("version.txt", "r", encoding="utf-8") as fh:
     prerelease_version = fh.read()
