@@ -22,7 +22,7 @@ jobs:
           LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
           SUBSTRING="Version Bumped"
 
-          if [[ "$LAST_COMMIT" == *"$SUBSTRING"* ]]; then
+          if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
             CURRENT_VERSION=`cat version.txt`
 
             echo "Current Version: $CURRENT_VERSION"
@@ -41,10 +41,10 @@ jobs:
 
             echo "$joined" > 'version.txt'
             echo "Minor Version Bumped to $joined"
-          fi
 
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add version.txt
-          git commit -m "Chore: Version Bumped to $joined"
-          git push
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add version.txt
+            git commit -m "Chore: Version Bumped to $joined"
+            git push
+          fi
