@@ -1,0 +1,25 @@
+name: Auto Raise Pull Request
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'chore/*'
+      - 'cicd/*'
+
+
+jobs:
+  auto-create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Raise Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "develop"
+        pr_title: "Automatic Pull Request to develop"
+        pr_body: "👑 *Automated Pull Request to Develop*"
+        pr_draft: false
+        pr_label: "AutoCICD"
+        github_token: "${{ secrets.HUB_TOKEN }}"

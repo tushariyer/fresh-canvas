@@ -1,0 +1,52 @@
+name: Auto SemVer [Main]
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  auto-semver-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - if: "${{ !contains(github.event.head_commit.message, 'Chore: Version Bumped to ') }}"
+        uses: actions/checkout@v2
+        with:
+          ref: "${{ github.event.pull_request.head.ref }}"
+          token: "${{ secrets.APPROVE_TOKEN }}"
+      - name: Bump Minor Version
+        run: |
+          echo "Checking if version change is required"
+          ORIGIN_BRANCH="origin/"
+          BRANCH=`git rev-parse --abbrev-ref HEAD`
+          ORIGIN_BRANCH+=$BRANCH
+          LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
+          SUBSTRING="Ready for review"
+
+          if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
+            echo "Minor Version to be bumped"
+            CURRENT_VERSION=`cat version.txt`
+
+            echo "Current Version: $CURRENT_VERSION"
+
+            arrVERSION=(${CURRENT_VERSION//./ })
+            ((arrVERSION[1]++))
+            ((arrVERSION[2]=0))
+
+            delim=""
+            joined=""
+
+            for item in "${arrVERSION[@]}"; do
+              joined="$joined$delim$item"
+              delim="."
+            done
+
+            echo "$joined" > 'version.txt'
+            echo "Minor Version Bumped to $joined"
+
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add version.txt
+            git commit -m "Chore: Version Bumped to $joined"
+            git push
+          fi
