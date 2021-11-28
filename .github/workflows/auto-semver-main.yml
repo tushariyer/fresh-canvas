@@ -16,11 +16,12 @@ jobs:
           token: "${{ secrets.APPROVE_TOKEN }}"
       - name: Bump Minor Version
         run: |
+          echo "Checking if version change is required"
           ORIGIN_BRANCH="origin/"
           BRANCH=`git rev-parse --abbrev-ref HEAD`
           ORIGIN_BRANCH+=$BRANCH
           LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
-          SUBSTRING="Version Bumped"
+          SUBSTRING="Ready for review"
 
           if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
             CURRENT_VERSION=`cat version.txt`
