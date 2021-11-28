@@ -24,6 +24,7 @@ jobs:
           SUBSTRING="Ready for review"
 
           if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
+            echo "Patch Version to be bumped"
             CURRENT_VERSION=`cat version.txt`
 
             echo "Current Version: $CURRENT_VERSION"
