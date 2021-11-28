@@ -20,6 +20,7 @@ jobs:
           BRANCH=`git rev-parse --abbrev-ref HEAD`
           ORIGIN_BRANCH+=$BRANCH
           LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
+          echo "Last Commit: $LAST_COMMIT"
           SUBSTRING="Version Bumped"
 
           if [[ "$LAST_COMMIT" == *"$SUBSTRING"* ]]; then
