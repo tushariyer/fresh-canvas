@@ -9,7 +9,8 @@ jobs:
   auto-semver-develop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - if: "${{ !contains(github.event.head_commit.message, 'Version Bumped') || !contains(github.event.commits[0].message, 'Version Bumped')}}"
+        uses: actions/checkout@v2
         with:
           ref: "${{ github.event.pull_request.head.ref }}"
           token: "${{ secrets.APPROVE_TOKEN }}"
@@ -23,6 +24,7 @@ jobs:
           SUBSTRING="Ready for review"
 
           if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
+            echo "Patch Version to be bumped"
             CURRENT_VERSION=`cat version.txt`
 
             echo "Current Version: $CURRENT_VERSION"
