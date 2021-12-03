@@ -1,0 +1,35 @@
+name: Auto Release
+
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  auto-release:
+    name: "Auto Release"
+    runs-on: "ubuntu-latest"
+    env:
+        RELEASE_VERSION: ""
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "${{ github.event.pull_request.head.ref }}"
+          token: "${{ secrets.APPROVE_TOKEN }}"
+      - name: Get New Version
+        run: |
+          echo "Checking new version"
+          $RELEASE_VERSION=`cat version.txt`
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.APPROVE_TOKEN }}"
+          automatic_release_tag: $RELEASE_VERSION
+          prerelease: true
+          title: "Production Build"
+          files: |
+            LICENSE
+            MANIFEST
+            README.md
+            version.txt
+            *.py

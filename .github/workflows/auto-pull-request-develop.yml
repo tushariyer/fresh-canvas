@@ -1,4 +1,4 @@
-name: Auto Raise Pull Request
+name: Auto Pull Request Develop
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  auto-create-pull-request:
+  auto-pull-request-develop:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

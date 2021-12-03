@@ -1,4 +1,4 @@
-name: Auto Pull Request to Main
+name: Auto Pull Request Main
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  auto-pull-request-to-main:
+  auto-pull-request-main:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
