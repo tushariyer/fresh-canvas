@@ -12,7 +12,6 @@ jobs:
     runs-on: "ubuntu-latest"
     env:
         RELEASE_VERSION: ""
-        IS_PRE_RELEASE: true
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,7 +25,7 @@ jobs:
         with:
           repo_token: "${{ secrets.APPROVE_TOKEN }}"
           automatic_release_tag: $RELEASE_VERSION
-          prerelease: $IS_PRE_RELEASE
+          prerelease: true
           title: "Production Build"
           files: |
             LICENSE
