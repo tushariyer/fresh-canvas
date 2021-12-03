@@ -11,7 +11,7 @@ with open("version.txt", "r", encoding="utf-8") as fh:
     fh.close()
 
 setup(name='fresh-canvas-prerelease',
-      version='0.1.7',
+      version=prerelease_version,
       py_modules=['fresh-canvas'],
       description='Fresh Canvas [Pre-Release] | The Project Base',
       long_description=long_desc,
