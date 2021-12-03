@@ -9,17 +9,13 @@ jobs:
   auto-cascade-develop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: "${{ github.event.pull_request.head.ref }}"
-          token: "${{ secrets.APPROVE_TOKEN }}"
-      - name: Cascade Merge to Develop
-        run: |
-          echo "Checking if version changed"
-          ORIGIN_BRANCH="origin/main"
-          LAST_COMMIT=`git log $ORIGIN_BRANCH -1 --oneline`
-          SUBSTRING="Auto Merge develop -> main"
-
-          if [[ $LAST_COMMIT == *"$SUBSTRING"* ]]; then
-            echo "Version was changed"
-          fi
+    - uses: actions/checkout@v2
+    - name: Raise Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "develop"
+        pr_title: "Cascade Merge to Develop"
+        pr_body: "👑 *Automated Pull Request to Develop*"
+        pr_draft: false
+        pr_label: "AutoCICD"
+        github_token: "${{ secrets.HUB_TOKEN }}"
