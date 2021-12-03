@@ -1,0 +1,23 @@
+name: Auto Pull Request to Main
+
+on:
+  schedule:
+  - cron: '27 12 * * *'
+
+
+jobs:
+  auto-pull-request-to-main:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout Repository
+      with:
+        ref: 'develop'
+    - uses: repo-sync/pull-request@v2
+      name: Raise Pull Request
+      with:
+        destination_branch: "main"
+        pr_title: "Auto Pull Request develop -> main"
+        pr_body: "👑 *Automated Pull Request to Main*"
+        pr_draft: false
+        github_token: "${{ secrets.HUB_TOKEN }}"
